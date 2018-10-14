@@ -9,7 +9,7 @@ ENV LC_ALL=en_US.UTF-8
 COPY requirements.txt /requirements.txt
 
 RUN apt-get update \
-    && apt-get install -y \
+    && apt-get install -y --no-install-recommends \
     curl \
     locales-all \
     python3 \
@@ -17,4 +17,6 @@ RUN apt-get update \
     sudo \
     unzip \
     wget \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
     && pip3 install -r /requirements.txt >/dev/null
