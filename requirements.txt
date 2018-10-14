@@ -4,6 +4,9 @@ pandas==0.23.4
 pyspark==2.3.2
 numpy==1.14.0
 
+# somehow needed
+setuptools==40.4.3
+
 # audit
 flake8==2.6.0
 flake8-blind-except==0.1.0
