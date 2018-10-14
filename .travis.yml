@@ -18,4 +18,6 @@ install:
 
 script:
   - docker build .
-  - behave features
+  - behave features --tags ~@skip
+  - ./lint
+
