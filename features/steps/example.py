@@ -4,9 +4,9 @@ from behave_spark.wrapper import hive, spark
 
 
 @given('a flight of a rocket with an')
-@given('a falcon X rocket with an inertial messurement unit')
+@given('a falcon X rocket with an inertial measurement unit')
 @when('it flew 10 times for each 10 hours')
-@then('the inertial meassurement unit has a total of 100 operating hours')
+@then('the inertial measurement unit has a total of 100 operating hours')
 @hive
 def create_rocket(_):
     pass  # TODO
