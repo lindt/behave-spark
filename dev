@@ -1,0 +1,19 @@
+#!/bin/bash
+
+docker build --tag registry.gitlab.com/think/behave-spark --quiet . &> /dev/null &&
+
+options=""
+if [ -t 0 ]; then
+    options="${options} --tty"
+fi
+
+docker run --rm\
+  -i \
+  --net=host \
+  -v $HOME:$HOME \
+  -w $(pwd) \
+  -e TERM="xterm-256color" \
+  -e HOME \
+  -e CI_COMMIT_SHA \
+  -e CI_COMMIT_REF_NAME \
+  registry.gitlab.com/think/behave-spark "$@"

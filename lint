@@ -2,13 +2,15 @@
 set -e
 
 docker run --rm -i hadolint/hadolint hadolint --ignore DL3008 - < Dockerfile
-pylint lib/behave_spark/*.py
-flake8 --ignore D100,D101,D102,D103,D104,D105,D107,E731,N806,I201,P101 --max-line-length=120 lib/**/*.py features/**/*.py
+
+./dev flake8 --ignore D100,D101,D102,D103,D104,D105,D107,E731,N806,I201,P101 --max-line-length=120 lib/**/*.py features/**/*.py
+
 docker run --rm -i -v $(pwd):/src -w /src gherkin/format:0.1.1 --replace features/*.feature
 docker run --rm -i -v $(pwd):/src -w /src gherkin/lint:1.2.2 --disable TooManyTags,TooManyDifferentTags features/*.feature
 docker run --rm -i -v $(pwd):/src -w /src gherkin/language:0.9.0 features/*.feature
 docker run --rm -i -v $(pwd):/src -w /src gherkin/readability:0.2.0 features/*.feature
-pylint --rcfile=.pylintrc \
+
+./dev pylint --rcfile=.pylintrc \
   lib/behave_spark/*.py
   features/*.py \
   features/steps/*.py
