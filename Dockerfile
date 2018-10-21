@@ -9,6 +9,8 @@ ENV \
 
 COPY requirements.txt /requirements.txt
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     curl \
