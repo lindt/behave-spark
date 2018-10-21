@@ -3,11 +3,13 @@ def to_dataframe(table):
     import numpy as np
     from collections import defaultdict
 
-    typemap = defaultdict(np.unicode_, 
+    typemap = defaultdict(
+        np.unicode_,
         str=np.unicode_,
         int=np.int32,
     )
-    parser = defaultdict(str,
+    parser = defaultdict(
+        str,
         str=str,
         int=int,
     )
@@ -22,7 +24,6 @@ def to_dataframe(table):
             parser.get(type_or_default, str),
         )
 
-
     def strip_types(headings):
         return [to_name_type_tuple(heading) for heading in headings]
 
@@ -34,6 +35,5 @@ def to_dataframe(table):
 
     return pd.DataFrame(
         data=from_gherkin_table(table),
-        # TODO: dtype=str
-        #dtype=[to_name_type_tuple(key)[1] for key in table.headings],
+        # TODO: dtype=[to_name_type_tuple(key)[1] for key in table.headings],
     )
