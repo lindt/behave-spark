@@ -8,7 +8,7 @@ if [ -t 0 ]; then
 fi
 
 docker run --rm\
-  -i \
+  -it \
   --net=host \
   -v $HOME:$HOME \
   -w $(pwd) \
