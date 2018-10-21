@@ -24,8 +24,8 @@ def to_dataframe(table):
             parser.get(type_or_default, str),
         )
 
-    def strip_types(headings):
-        return [to_name_type_tuple(heading) for heading in headings]
+    # def strip_types(headings):
+    #     return [to_name_type_tuple(heading) for heading in headings]
 
     def from_gherkin_table(table):
         return {

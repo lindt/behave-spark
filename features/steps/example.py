@@ -8,7 +8,7 @@ from behave_spark.wrapper import hive, spark
 @when('it flew 10 times for each 10 hours')
 @then('the inertial meassurement unit has a total of 100 operating hours')
 @hive
-def create_rocket(context):
+def create_rocket(_):
     pass  # TODO
 
 
