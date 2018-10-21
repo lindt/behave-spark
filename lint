@@ -11,6 +11,6 @@ docker run --rm -i -v $(pwd):/src -w /src gherkin/language:0.9.0 features/*.feat
 docker run --rm -i -v $(pwd):/src -w /src gherkin/readability:0.2.0 features/*.feature
 
 ./dev pylint --rcfile=.pylintrc \
-  lib/behave_spark/*.py
+  lib/behave_spark/*.py \
   features/*.py \
   features/steps/*.py

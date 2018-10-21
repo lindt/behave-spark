@@ -1,15 +1,18 @@
 FROM ubuntu:18.04
 
-ENV PYTHONPATH=lib
-ENV SPARK_HOME=/opt/spark/
-ENV PYSPARK_DRIVER_PYTHON=python3
-ENV PYSPARK_PYTHON=python3
-ENV LC_ALL=en_US.UTF-8
+ENV \
+  PYTHONPATH=lib \
+  SPARK_HOME=/opt/spark/ \
+  PYSPARK_DRIVER_PYTHON=python3 \
+  PYSPARK_PYTHON=python3 \
+  LC_ALL=en_US.UTF-8
 
 COPY requirements.txt /requirements.txt
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+  && apt-get install -y --no-install-recommends \
     curl \
     locales-all \
     python3 \
@@ -17,7 +20,8 @@ RUN apt-get update \
     sudo \
     unzip \
     wget \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* && \
+  curl -sk https://bootstrap.pypa.io/get-pip.py | python3
 
-RUN pip3 install -r /requirements.txt >/dev/null
+RUN pip3 install -r /requirements.txt

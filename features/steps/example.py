@@ -1,29 +1,26 @@
-from behave import *
-from behave_spark.wrapper import spark, hive
+from behave import given, then, when
 from behave_spark.parser import to_dataframe
+from behave_spark.wrapper import hive, spark
 
 
 @given('a flight of a rocket with an')
-@given('a falcon X rocket with an inertial messurement unit')
+@given('a falcon X rocket with an inertial measurement unit')
 @when('it flew 10 times for each 10 hours')
-@then('the inertial meassurement unit has a total of 100 operating hours')
+@then('the inertial measurement unit has a total of 100 operating hours')
 @hive
-def step_impl(context):
+def create_rocket(_):
     pass  # TODO
 
 
-@given('a gherkin table as input')
-def step_impl(context, ):
-    context.input = context.table
-
-
 @given('a table')
-def step_impl(context):
+@given('a gherkin table as input')
+@spark
+def create_table(context, ):
     context.data = to_dataframe(context.table)
 
 
 @given('another table')
-def step_impl(context):
+def create_another_table(context):
     context.data2 = to_dataframe(context.table)
 
 
