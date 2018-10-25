@@ -8,3 +8,20 @@ Feature: Goal
     Given a falcon X rocket with an inertial measurement unit
     When it flew 10 times for each 10 hours
     Then the inertial measurement unit has a total of 100 operating hours
+
+  Scenario: Second
+    Given a gherkin table as input
+      | a |
+      | 1 |
+    Then it equals
+      | a |
+      | 1 |
+
+  @fails @skip
+  Scenario: Second
+    Given a gherkin table as input
+      | a |
+      | 1 |
+    Then it equals
+      | a |
+      | 2 |

@@ -31,3 +31,4 @@ def aa(context):
     expected = to_dataframe(context.table)
 
     eq_(sorted(expected.keys().tolist()), sorted(context.data.keys().tolist()))
+    eq_(expected.values, context.data.values)
