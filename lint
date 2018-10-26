@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+./format --check
+
 docker run --rm -i hadolint/hadolint hadolint --ignore DL3008 - < Dockerfile
 
 ./dev flake8 --ignore D100,D101,D102,D103,D104,D105,D107,E731,N806,I201,P101 --max-line-length=120 lib/**/*.py features/**/*.py

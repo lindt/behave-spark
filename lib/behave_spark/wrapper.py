@@ -20,6 +20,10 @@ def spark(func):
         if "spark" not in context:
             context.spark = create_spark_context()
 
+            import atexit
+
+            atexit.register(context.spark.stop)
+
         return func(*args, **kwds)
 
     return wrapper

@@ -17,11 +17,10 @@ Feature: Goal
       | a |
       | 1 |
 
-  @fails @skip
-  Scenario: Second
+  Scenario: Third
     Given a gherkin table as input
       | a |
       | 1 |
-    Then it equals
+    Then it not equals
       | a |
       | 2 |
