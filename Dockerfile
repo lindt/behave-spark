@@ -25,8 +25,6 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* && \
   curl -sk https://bootstrap.pypa.io/get-pip.py | python3
 
-RUN pip3 install -r /requirements.txt
-
 ENV JAVA_HOME       /usr/lib/jvm/java-8-oracle
 ENV LANG            en_US.UTF-8
 
@@ -60,10 +58,15 @@ ENV SPARK_VERSION 2.3.1
 ENV SPARK_PACKAGE spark-${SPARK_VERSION}-bin-without-hadoop
 ENV SPARK_HOME /usr/spark-${SPARK_VERSION}
 ENV SPARK_DIST_CLASSPATH="${HADOOP_HOME}/etc/hadoop/*:${HADOOP_HOME}/share/hadoop/common/lib/*:${HADOOP_HOME}/share/hadoop/common/*:${HADOOP_HOME}/share/hadoop/hdfs/*:${HADOOP_HOME}/share/hadoop/hdfs/lib/*:${HADOOP_HOME}/share/hadoop/hdfs/*:${HADOOP_HOME}/share/hadoop/yarn/lib/*:${HADOOP_HOME}/share/hadoop/yarn/*:${HADOOP_HOME}/share/hadoop/mapreduce/lib/*:${HADOOP_HOME}/share/hadoop/mapreduce/*:${HADOOP_HOME}/share/hadoop/tools/lib/*"
-ENV PATH $PATH:${SPARK_HOME}/bin
+ENV PATH ${PATH}:${SPARK_HOME}/bin
 RUN curl -sL --retry 3 \
   "https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=spark/spark-${SPARK_VERSION}/${SPARK_PACKAGE}.tgz" \
   | gunzip \
   | tar x -C /usr/ \
  && mv /usr/${SPARK_PACKAGE} ${SPARK_HOME} \
  && chown -R root:root ${SPARK_HOME}
+
+RUN pip3 install -r /requirements.txt
+
+# TODO: py4j Version!?
+ENV PYTHONPATH ${SPARK_HOME}\python:${SPARK_HOME}\python\lib\py4j-0.10.7-src.zip:${PYTHONPATH}
