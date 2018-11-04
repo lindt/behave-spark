@@ -3,8 +3,11 @@ from functools import wraps
 
 def create_spark_context():
     from pyspark.sql import SparkSession
+    import atexit
 
-    return SparkSession.builder.appName('behave-spark').getOrCreate()
+    sc = SparkSession.builder.appName('behave-spark').getOrCreate()
+    atexit.register(sc.stop)
+    return sc
 
 
 def create_hive_context(spark_context):
@@ -19,10 +22,6 @@ def spark(func):
         context = args[0]
         if 'spark' not in context:
             context.spark = create_spark_context()
-
-            import atexit
-
-            atexit.register(context.spark.stop)
 
         return func(*args, **kwds)
 
