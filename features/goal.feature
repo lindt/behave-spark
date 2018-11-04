@@ -28,7 +28,7 @@ Feature: Goal
   Scenario: Second
     Given a gherkin table as input
       | a : int |
-      | 1 |
+      | 1       |
     Then it equals
       | a : str |
-      | 1 |
+      | 1       |
