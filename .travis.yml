@@ -8,6 +8,7 @@ python:
 
 env:
   - PYTHONPATH=lib
+  - BLACK="./dev black"
 
 services:
   - docker
