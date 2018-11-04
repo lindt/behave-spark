@@ -14,6 +14,7 @@ def create_rocket(_):
 
 @given('a table')
 @given('a gherkin table as input')
+@when('a gherkin table as input')
 @spark
 def create_table(context):
     context.data = to_dataframe(context.table)
