@@ -7,9 +7,9 @@ def to_dataframe(table):
     parser = defaultdict(str, str=str, int=int)
 
     def to_name_type_tuple(heading):
-        name_with_type = heading.split(":", maxsplit=1)
+        name_with_type = heading.split(':', maxsplit=1)
         type_or_default = (
-            (name_with_type[1].strip()) if len(name_with_type) > 1 else "str"
+            (name_with_type[1].strip()) if len(name_with_type) > 1 else 'str'
         )
 
         return (

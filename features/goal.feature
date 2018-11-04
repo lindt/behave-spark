@@ -24,3 +24,11 @@ Feature: Goal
     Then it not equals
       | a |
       | 2 |
+
+  Scenario: Second
+    Given a gherkin table as input
+      | a : int |
+      | 1 |
+    Then it equals
+      | a : str |
+      | 1 |

@@ -41,5 +41,11 @@ COPY requirements*.txt /
 RUN pip3 install -r /requirements.txt
 RUN pip3 install -r /requirements.development.txt
 
+RUN echo $'log4j.rootCategory=OFF,console \n\
+log4j.appender.console=org.apache.log4j.ConsoleAppender \n\
+log4j.appender.console.target=System.err \n\
+log4j.appender.console.layout=org.apache.log4j.PatternLayout \n\
+log4j.logger.org.apache.spark.repl.Main=OFF \n' > /usr/local/spark/conf/log4j.properties
+
 # Check if spark context can be created
 RUN python3 -c 'from pyspark import SparkContext; sc = SparkContext("local", "test"); print(sc.version)'
