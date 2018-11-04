@@ -7,8 +7,9 @@ python:
   - "3.6"
 
 env:
-  - PYTHONPATH=lib
-  - BLACK="./dev black"
+  global:
+    - PYTHONPATH=lib
+    - BLACK="./dev black"
 
 services:
   - docker
