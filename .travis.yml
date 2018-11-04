@@ -3,12 +3,13 @@ sudo: required
 language: python
 
 python:
-  - "3.4"
   - "3.5"
   - "3.6"
 
 env:
-  - PYTHONPATH=lib
+  global:
+    - PYTHONPATH=lib
+    - BLACK="./dev black"
 
 services:
   - docker

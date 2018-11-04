@@ -1,0 +1,4 @@
+#!/bin/bash
+BLACK=${BLACK:-black}
+
+${BLACK} --py36 --skip-string-normalization $@ .

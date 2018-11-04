@@ -8,8 +8,7 @@ if [ -t 0 ]; then
 fi
 
 docker run --rm\
-  -i \
-  --net=host \
+  -it \
   -v $HOME:$HOME \
   -w $(pwd) \
   -e TERM="xterm-256color" \

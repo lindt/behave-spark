@@ -14,8 +14,9 @@ def create_rocket(_):
 
 @given('a table')
 @given('a gherkin table as input')
+@when('a gherkin table as input')
 @spark
-def create_table(context, ):
+def create_table(context):
     context.data = to_dataframe(context.table)
 
 
@@ -25,9 +26,22 @@ def create_another_table(context):
 
 
 @then('it equals')
-def aa(context):
+def assert_equals(context):
     from nose.tools import eq_
 
     expected = to_dataframe(context.table)
 
-    eq_(sorted(expected.keys().tolist()), sorted(context.data.keys().tolist()))
+    eq_(expected.keys().tolist(), context.data.keys().tolist())
+    eq_(expected.values, context.data.values)
+
+
+@then('it not equals')
+def assert_not_equals(context):
+    from nose.tools import assert_not_equal
+
+    expected = to_dataframe(context.table)
+
+    assert_not_equal(
+        expected.keys().tolist() + expected.values,
+        context.data.keys().tolist() + context.data.values,
+    )

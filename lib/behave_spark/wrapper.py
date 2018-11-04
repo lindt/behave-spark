@@ -20,7 +20,12 @@ def spark(func):
         if 'spark' not in context:
             context.spark = create_spark_context()
 
+            import atexit
+
+            atexit.register(context.spark.stop)
+
         return func(*args, **kwds)
+
     return wrapper
 
 
@@ -34,6 +39,5 @@ def hive(func):
             context.hive = create_hive_context(context.spark)
 
         return func(*args, **kwds)
-    return wrapper
 
-# TODO: sc.stop()
+    return wrapper
